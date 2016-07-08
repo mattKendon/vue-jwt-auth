@@ -23,8 +23,6 @@ module.exports = (function () {
     }
 
     function _userData (res) {
-        res = res.json();
-
         return res.data || res
     }
 
@@ -188,7 +186,7 @@ module.exports = (function () {
 
             _setRememberMeCookie.call(this, rememberMe)
 
-            _setToken.call(this, res.json()[this.getOption('tokenVar')])
+            _setToken.call(this, res.data[this.getOption('tokenVar')])
 
             this.authenticated = null
 
@@ -400,7 +398,7 @@ module.exports = (function () {
                 this.$http.post(this.getOption('loginAsUrl'), data).then((res) => {
                     var _this = this
 
-                    localStorage.setItem('login-as-' + this.getOption('tokenName'), res.json()[this.getOption('tokenVar')])
+                    localStorage.setItem('login-as-' + this.getOption('tokenName'), res.data[this.getOption('tokenVar')])
 
                     _fetch.call(this, function () {
                         if (options.success) {
